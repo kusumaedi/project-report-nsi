@@ -20,12 +20,14 @@ return new class extends Migration
             $table->string('shift', 50)->nullable();
             $table->timestamp('report_at')->nullable();
             $table->string('title');
-            $table->longtext('potential_dangerous_point');
-            $table->longtext('most_danger_point');
+            $table->json('potential_dangerous_point');
+            $table->json('most_danger_point');
             $table->longtext('statement');
             $table->longtext('keyword');
             $table->json('instructor');
             $table->json('attendant');
+            $table->string('checker');
+            $table->string('status');
             $table->timestamps();
         });
     }
