@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Report;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
 {
@@ -26,7 +27,8 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::select('id', 'name')->get();
+        return view('report.create',compact('user'));
     }
 
     /**
