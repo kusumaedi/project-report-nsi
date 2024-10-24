@@ -39,7 +39,38 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'checker' => 'required',
+            'shift' => 'required',
+            'report_at' => 'required',
+            'title' => 'required',
+            'potential_dangerous_point' => 'required',
+            'most_danger_point' => 'required',
+            // 'statement' => 'required',
+            'keyword' => 'required',
+            'attendant' => 'required',
+        ]);
+
+        $input = $request->except(['_token', 'submit']);
+
+        $input['user_id'] = auth()->user()->id;
+        $input['department_id'] = auth()->user()->department_id;
+        $input['section_id'] = auth()->user()->section_id;
+        $input['status'] = 'Submit';
+        unset($input['instructor']);
+
+        $report = Report::create($input);
+
+        // dd($request->instructor);
+
+        foreach ($request->instructor as $instructor){
+            $report->instructors()->create([
+                                'report_id' => $report->id,
+                                'user_id' => (int) $instructor
+                            ]);
+        }
+
+        return to_route('report.index')->with('success', 'New report successfully added');
     }
 
     /**

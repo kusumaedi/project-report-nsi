@@ -82,9 +82,9 @@
                             <optgroup label="User List">
                             @foreach ($user as $emp)
                                 @if (old('checker'))
-                                <option value="{{ $emp->id }}" {{ (in_array($emp->id, old('checker'))) ? "selected" : "" }}>{{ $emp->name }}</option>
+                                <option value="{{ $emp->name }}" {{ ($emp->name == old('checker')) ? "selected" : "" }}>{{ $emp->name }}</option>
                                 @else
-                                <option value="{{ $emp->id }}">{{ $emp->name }}</option>
+                                <option value="{{ $emp->name }}">{{ $emp->name }}</option>
                                 @endif
                             @endforeach
                             </optgroup>

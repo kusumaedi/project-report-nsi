@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->integer('department_id');
-            $table->integer('section_id');
+            $table->integer('section_id')->nullable();;
             $table->string('shift', 50)->nullable();
             $table->timestamp('report_at')->nullable();
             $table->string('title');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->json('most_danger_point');
             $table->longtext('statement');
             $table->longtext('keyword');
-            $table->json('instructor');
+            $table->json('instructor')->nullable();
             $table->json('attendant');
             $table->string('checker');
             $table->string('status');
