@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->integer('department_id');
             $table->integer('section_id');
             $table->string('shift', 50)->nullable();
             $table->timestamp('report_at')->nullable();

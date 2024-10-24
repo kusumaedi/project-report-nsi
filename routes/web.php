@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,10 @@ use App\Http\Controllers\LoginController;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', function () {
-        return view('welcome');
+        return view('home');
     });
+
+    Route::resource('report', ReportController::class);
 
 });
 
