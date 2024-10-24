@@ -38,7 +38,7 @@
 
 
 
-            <div class="row mb-3">
+            <div class="row mb-3 h4">
                 <div class="col-2">
                     Department <br>
                     Section / Shift
@@ -152,7 +152,7 @@
                                 @endif
                             @endforeach --}}
                             @foreach ( array_chunk($report->attendant, 2, true) as $chunk)
-                            <div class="row" >
+                            <div class="row">
                                 @foreach($chunk as $item)
                                     <div class="col-md-6 pl-2 pr-3" style="border-bottom: 1px solid #ccc; {{ (!$loop->last) ? 'border-right: 1px solid #ccc;' : '' }}">
                                         <div class="row mb-0 my-1">

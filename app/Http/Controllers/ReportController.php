@@ -7,6 +7,7 @@ use App\Models\Report;
 use Illuminate\Http\Request;
 use App\Models\ReportInstructor;
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller
 {
@@ -155,5 +156,21 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+    }
+
+    public function print(Report $report){
+        $pdf = app('dompdf.wrapper');
+        $contxt = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE,
+            ]
+        ]);
+        $pdf = Pdf::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf->getDomPDF()->setHttpContext($contxt);
+
+        $pdf = Pdf::loadView('report.pdf', compact('report'))->setPaper('a4', 'potrait');
+        return $pdf->stream();
     }
 }

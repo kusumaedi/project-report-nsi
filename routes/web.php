@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::resource('report', ReportController::class);
+    Route::get('report/{report}/print', [ReportController::class, 'print'])->name('report.print');
 
 });
 
