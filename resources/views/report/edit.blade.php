@@ -187,7 +187,7 @@
                         <x-select name="instructor[]" id="instructor" multiple placeholder="Search...">
                             <optgroup label="User List">
                                 @foreach ($user as $emp)
-                                <option value="{{ $emp->id }}" {{ (in_array($emp->id, $data)) ? "selected" : "" }}>{{ $emp->name }}</option>
+                                <option value={{ $emp->id }} {{ (in_array($emp->id, $data)) ? "selected" : "" }}>{{ $emp->name }}</option>
                                 @endforeach
                             </optgroup>
                         </x-select>

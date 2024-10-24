@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('report_instructors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('report_id')->constrained();
-            $table->integer('user_id');
+            $table->string('user_id', 10);
             $table->timestamps();
         });
     }

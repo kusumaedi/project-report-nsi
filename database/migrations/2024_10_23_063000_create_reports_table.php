@@ -25,7 +25,6 @@ return new class extends Migration
             $table->json('most_danger_point');
             $table->longtext('statement');
             $table->longtext('keyword');
-            $table->json('instructor')->nullable();
             $table->json('attendant');
             $table->string('checker');
             $table->string('status');

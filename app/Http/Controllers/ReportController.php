@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use App\Models\ReportInstructor;
 use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
@@ -46,7 +47,6 @@ class ReportController extends Controller
             'title' => 'required',
             'potential_dangerous_point' => 'required',
             'most_danger_point' => 'required',
-            // 'statement' => 'required',
             'keyword' => 'required',
             'attendant' => 'required',
         ]);
@@ -57,7 +57,6 @@ class ReportController extends Controller
         $input['department_id'] = auth()->user()->department_id;
         $input['section_id'] = auth()->user()->section_id;
         $input['status'] = 'Submit';
-        unset($input['instructor']);
 
         $report = Report::create($input);
 
@@ -105,27 +104,45 @@ class ReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
-        //
+        $request->validate([
+            'checker' => 'required',
+            'shift' => 'required',
+            'report_at' => 'required',
+            'title' => 'required',
+            'potential_dangerous_point' => 'required',
+            'most_danger_point' => 'required',
+            'keyword' => 'required',
+            'attendant' => 'required',
+            'instructor' => 'required',
+        ]);
 
+        $input = $request->except(['_token', 'submit']);
 
-        // $array_user_old = $report->instructor->pluck('name', 'id_emp')->toArray();
-        // //search user baru
-        // $result1=array_diff_assoc($request->emp,$array_user_old);
-        // //search user lama (yang tidak ada di inputan user baru)
-        // $result2=array_diff_assoc($array_user_old,$request->emp);
+        // $report->update($input);
+        // dd($request->instructor);
 
-        // //insert new user
-        // if (!empty($result1)) {
-        //     foreach($result1 as $id_user => $name_user){
-        //         $report->instructor()->create(['id_emp' => $id_user, 'name' => $name_user]);
-        //     }
-        // }
-        // //delete old user
-        // if (!empty($result2)) {
-        //     foreach($result2 as $id_user => $name){
-        //        ReportInstructor::where('report_id', $report->id)->where('user_id', $id_user)->delete();
-        //     }
-        // }
+        $array_instructor_old = $report->instructors->pluck('user_id')->toArray();
+        //search instructor baru
+        $result1=array_diff_assoc($request->instructor,$array_instructor_old);
+        //search instructor lama (yang tidak ada di inputan instructor baru)
+        $result2=array_diff_assoc($array_instructor_old,$request->instructor);
+
+        // dd($result2);
+
+        //insert new instructor
+        if (!empty($result1)) {
+            foreach($result1 as $user => $id_user){
+                $report->instructors()->create(['report_id' => $report->id, 'user_id' => $id_user]);
+            }
+        }
+        //delete old instructor
+        if (!empty($result2)) {
+            foreach($result2 as $user => $id_user){
+               ReportInstructor::where('report_id', $report->id)->where('user_id', $id_user)->delete();
+            }
+        }
+
+        return to_route('report.index')->with('success', 'Report successfully updated');
     }
 
     /**
