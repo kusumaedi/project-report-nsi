@@ -26,4 +26,18 @@ class Report extends Model
     {
         return $this->hasMany(ReportInstructor::class);
     }
+
+    public function getStatusBadgeAttribute()
+    {
+        if ( $this->status == 'Submit') {
+           $status = '<span class="badge bg-secondary text-white">Submit</span>';
+        } elseif ( $this->status == 'Reviewed') {
+            $status = '<span class="badge bg-success text-white">Reviewed</span>';
+        } elseif ( $this->status == 'Approved') {
+            $status = '<span class="badge badge-outline text-green">Approved</span>';
+        } else {
+           $status = '<span class="status-dot status-orange">'.$this->status.'</span>';
+        }
+        return $status;
+    }
 }

@@ -54,11 +54,11 @@
                 <thead>
                     <tr>
                         <th width="2%">#</th>
-                        <th>Nama</th>
-                        <th>Team</th>
-                        <th>Item Code</th>
-                        <th>Type</th>
-                        <th>Item Description</th>
+                        <th>Prepared By</th>
+                        <th>Department</th>
+                        <th>Section / Shift</th>
+                        <th>Datetime</th>
+                        <th>Title</th>
                         <th>Status</th>
                         <th width="75px"></th>
                     </tr>
@@ -69,13 +69,13 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $list->user->name }}</td>
                         <td>
-                            {{ $list->user->team }}
+                            {{ $list->user->department }}
                         </td>
-                        <td>{{ $list->item_code }}</td>
-                        <td>{{ $list->type }}</td>
-                        <td>{{ $list->item_description }}</td>
+                        <td>{{ $list->user->section }}</td>
+                        <td data-sort="{{ strtotime($list->report_at) }}">{{ date("d-M-y H:i", strtotime($list->report_at)) }}</td>
+                        <td>{{ $list->title }}</td>
                         <td class="text-center">
-                            {{ $list->status }}
+                            {!! $list->status_badge !!}
                         </td>
                         <td class="text-center">
 

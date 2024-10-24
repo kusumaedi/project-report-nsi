@@ -92,7 +92,8 @@ class ReportController extends Controller
      */
     public function edit(Report $report)
     {
-        //
+        $user = User::select('id', 'name')->get();
+        return view('report.edit', compact('report', 'user'));
     }
 
     /**
@@ -105,6 +106,26 @@ class ReportController extends Controller
     public function update(Request $request, Report $report)
     {
         //
+
+
+        // $array_user_old = $report->instructor->pluck('name', 'id_emp')->toArray();
+        // //search user baru
+        // $result1=array_diff_assoc($request->emp,$array_user_old);
+        // //search user lama (yang tidak ada di inputan user baru)
+        // $result2=array_diff_assoc($array_user_old,$request->emp);
+
+        // //insert new user
+        // if (!empty($result1)) {
+        //     foreach($result1 as $id_user => $name_user){
+        //         $report->instructor()->create(['id_emp' => $id_user, 'name' => $name_user]);
+        //     }
+        // }
+        // //delete old user
+        // if (!empty($result2)) {
+        //     foreach($result2 as $id_user => $name){
+        //        ReportInstructor::where('report_id', $report->id)->where('user_id', $id_user)->delete();
+        //     }
+        // }
     }
 
     /**
