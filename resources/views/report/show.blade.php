@@ -137,7 +137,7 @@
                     <td width="20%"><b>Attendant / Sign: </b></td>
                     <td>
                         @if ($report->attendant != '')
-                            @foreach ( $report->attendant as $attendant )
+                            {{-- @foreach ( $report->attendant as $attendant )
                                 <div class="row">
                                     <div class="col-6">
                                         {{ $attendant }}
@@ -150,6 +150,22 @@
                                 @if(!$loop->last)
                                 <hr class="m-0 my-1">
                                 @endif
+                            @endforeach --}}
+                            @foreach ( array_chunk($report->attendant, 2, true) as $chunk)
+                            <div class="row" >
+                                @foreach($chunk as $item)
+                                    <div class="col-md-6 pl-2 pr-3" style="border-bottom: 1px solid #ccc; {{ (!$loop->last) ? 'border-right: 1px solid #ccc;' : '' }}">
+                                        <div class="row mb-0 my-1">
+                                            <div class="col-6">
+                                                {{ $item }}
+                                            </div>
+                                            <div class="col-6">
+                                                /
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                             @endforeach
                         @endif
 

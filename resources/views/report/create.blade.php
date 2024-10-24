@@ -98,7 +98,7 @@
                 <div class="col-xl-6">
                     <div class="mb-3">
                         <x-label class="col-form-label required">Shift</x-label>
-                        <x-input type="text" name="shift" id="shift" placeholder="Input item code" value="{{ old('shift') }}"/>
+                        <x-input type="text" name="shift" id="shift" placeholder="Input shift" value="{{ old('shift') }}"/>
                     </div>
                 </div>
                 <div class="col-xl-6">
