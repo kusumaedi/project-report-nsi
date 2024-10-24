@@ -93,8 +93,6 @@
 
     <div style="font-size: 11.5pt;">
 
-
-
         <table style="width:100%" class="tborder">
             <tr>
                 <td colspan="2">
@@ -203,6 +201,32 @@
             </tr>
 
         </table>
+
+        <table style="width:100%" class="tborder textcenter" style="margin-bottom:20px">
+            <tr>
+                <td>
+                    Prepared By <br><br> <strong><i>{{ $report->user->name }}</i></strong>
+                </td>
+                <td>
+                    Checked By <br><br> <strong><i>{{ $report->checker }}</i></strong>
+                </td>
+                <td>
+                    Reviewed By <br><br> ___
+                </td>
+                <td>
+                    Approved 1 By <br><br> ___
+                </td>
+                <td>
+                    Approved 2 By <br><br> ___
+                </td>
+            </tr>
+        </table>
+
+        <div>
+            <div style="margin-left: auto;margin-right: 0; border: 1px solid black; width:35%; padding:5px 20px; text-align: center;">
+                Form  No. : xxx-zz-{{ sprintf("%03d", $report->id); }}, {{ date("d-M-y", strtotime($report->report_at)) }}
+            </div>
+        </div>
 
     </div>
 
