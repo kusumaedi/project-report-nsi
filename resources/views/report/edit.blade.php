@@ -57,19 +57,19 @@
                 <div class="col-xl-4">
                     <div class="mb-3">
                         <x-label class="col-form-label">Prepared By</x-label>
-                        <x-input type="text" disabled value="{{ auth()->user()->name }}"/>
+                        <x-input type="text" disabled value="{{ $report->user->name }}"/>
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="mb-3">
                         <x-label class="col-form-label">Department</x-label>
-                        <x-input type="text" disabled  value="{{ auth()->user()->department }}"/>
+                        <x-input type="text" disabled  value="{{ $report->user->department }}"/>
                     </div>
                 </div>
                 <div class="col-xl-4">
                     <div class="mb-3">
                         <x-label class="col-form-label">Section</x-label>
-                        <x-input type="text" disabled  value="{{ auth()->user()->section }}"/>
+                        <x-input type="text" disabled  value="{{ $report->user->section }}"/>
                     </div>
                 </div>
             </div>

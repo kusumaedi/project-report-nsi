@@ -80,7 +80,8 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        $user = User::select('id', 'name')->get();
+        return view('report.show',compact('report','user'));
     }
 
     /**
