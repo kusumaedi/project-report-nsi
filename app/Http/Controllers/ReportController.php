@@ -15,7 +15,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $report = Report::with('user')->where('user_id', auth()->user()->id)->get();
+        return view('report.index', compact('report'));
     }
 
     /**
