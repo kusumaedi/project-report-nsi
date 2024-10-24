@@ -153,8 +153,8 @@
                     <table style="border-collapse: collapse;width:100%; border-style: hidden;">
                         @foreach ( $report->instructors as $instructors )
                             <tr>
-                                <td width="5px">{{ $loop->index + 1 }}.</td>
-                                <td width="50%">{{ $instructors->user->name }}</td>
+                                <td width="5%">{{ $loop->index + 1 }}.</td>
+                                <td width="45%">{{ $instructors->user->name }}</td>
                                 <td style="border-left-style: hidden;">/</td>
                             </tr>
                         @endforeach
@@ -180,13 +180,13 @@
                                 @php
                                 $j++;
                                 @endphp
-                                <td width="5px">{{ ($loop->first) ? $j : ($i+1)*2 }}.</td>
-                                <td width="50%">{{ $value }}</td>
-                                <td width="45%" style="border-left-style: hidden;">/</td>
+                                <td width="5%">{{ ($loop->first) ? $j : ($i+1)*2 }}.</td>
+                                <td width="25%">{{ $value }}</td>
+                                <td width="20%" style="border-left-style: hidden;">/</td>
                                 @if (count($row) == 1)
-                                <td width="5px"></td>
-                                <td width="50%"></td>
-                                <td width="45%" style="border-left-style: hidden;"></td>
+                                <td width="5%"></td>
+                                <td width="25%"></td>
+                                <td width="20%" style="border-left-style: hidden;"></td>
                                 @endif
                                 @endforeach
                             </tr>

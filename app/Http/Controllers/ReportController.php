@@ -120,7 +120,7 @@ class ReportController extends Controller
 
         $input = $request->except(['_token', 'submit']);
 
-        // $report->update($input);
+        $report->update($input);
         // dd($request->instructor);
 
         $array_instructor_old = $report->instructors->pluck('user_id')->toArray();
