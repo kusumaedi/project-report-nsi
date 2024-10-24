@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ROLE_USER              = 1;
+    const ROLE_ADMIN             = 2;
+    const ROLE_REVIEWER          = 3;
+    const ROLE_APPROVER          = 4;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +26,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'department_id',
+        'section_id',
+        'section',
+        'department',
+        'username',
+        'role'
     ];
 
     /**
@@ -41,4 +52,41 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+    public function isUser()
+    {
+        return $this->role === self::ROLE_USER;
+    }
+    public function isReviewer()
+    {
+        return $this->role === self::ROLE_REVIEWER;
+    }
+    public function isApprover()
+    {
+        return $this->role === self::ROLE_APPROVER;
+    }
+
+    public static function roles()
+    {
+        return [
+            static::ROLE_ADMIN         => 'Administrator',
+            static::ROLE_USER          => 'User',
+            static::ROLE_REVIEWER      => 'Reviewer',
+            static::ROLE_APPROVER      => 'Approver',
+        ];
+    }
+
+    public function getRoleNameAttribute()
+    {
+        if (!in_array($this->role, array_keys(static::roles()))) {
+            throw new \Exception('Role [' . $this->role . '] is not defined');
+        }
+        return static::roles()[$this->role];
+    }
+
+
 }
