@@ -35,7 +35,9 @@ class Report extends Model
             $status = '<span class="badge bg-success text-white">Reviewed</span>';
         } elseif ( $this->status == 'Approved') {
             $status = '<span class="badge badge-outline text-green">Approved</span>';
-        } else {
+        } elseif ( $this->status == 'Rejected') {
+            $status = '<span class="badge bg-danger text-white">Rejected</span>';
+        }else {
            $status = '<span class="status-dot status-orange">'.$this->status.'</span>';
         }
         return $status;
@@ -47,6 +49,9 @@ class Report extends Model
         }
         if($filters['section_id'] ?? false) {
             $query->where('section_id', request('section_id'));
+        }
+        if($filters['status'] ?? false) {
+            $query->where('status', request('status'));
         }
     }
 }

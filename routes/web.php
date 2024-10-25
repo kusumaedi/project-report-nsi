@@ -7,6 +7,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ReportRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::resource('user', UserController::class);
     });
 
+    Route::get('report-admin', [ReportRoleController::class, 'admin'])->name('report.admin');
 
 });
 
