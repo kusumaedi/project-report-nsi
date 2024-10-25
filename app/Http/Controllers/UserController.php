@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Department;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -76,7 +77,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.user.edit', compact('user'));
+        $department = Department::where('del', 'N')->get();
+        $section = Section::where('del', 'N')->where('department_id', $user->department_id)->get();
+        return view('admin.user.edit', compact('user', 'department', 'section'));
     }
 
     /**

@@ -34,22 +34,22 @@
 
                         <div class="mb-3">
                             <x-label class="form-label">Username</x-label>
-                            <x-input type="text" class="form-control" placeholder="Enter name" name="name" id="name" />
+                            <x-input type="text" class="form-control" placeholder="Enter name" name="username" id="username" value="{{ old('username') }}"/>
                         </div>
                         <div class="mb-3">
                             <x-label class="form-label">Name</x-label>
-                            <x-input type="text" class="form-control" placeholder="Enter name" name="name" id="name" />
+                            <x-input type="text" class="form-control" placeholder="Enter name" name="name" id="name" value="{{ old('name') }}"/>
                         </div>
                         <div class="mb-3">
                             <x-label class="form-label">Email address</x-label>
-                            <x-input type="email" class="form-control" placeholder="Enter email" name="email" id="email" />
+                            <x-input type="email" class="form-control" placeholder="Enter email" name="email" id="email" value="{{ old('email') }}"/>
                         </div>
                         <div class="mb-3">
                             <x-label class="form-label">Department</x-label>
                             <x-select name="department_id" id="department_id" class="form-select">
                                 <option value="">-choose-</option>
                                 @foreach ($department as $dept)
-                                <option value="{{ $dept->id }}" {{ (request()->get('department_id') == $dept->id) ? 'selected' : '' }}>{{ $dept->name }}</option>
+                                <option value="{{ $dept->id }}">{{ $dept->name }}</option>
                                 @endforeach
                             </x-select>
                         </div>
@@ -66,6 +66,16 @@
                                 </span>
 
                               </div>
+                        </div>
+                        <div class="mb-3">
+                            <x-label class="form-label">Role</x-label>
+                            <x-select name="role" id="role" class="form-select">
+                                <option value="">-choose-</option>
+                                <option value="1" {{ (old('role') == '1') ? 'selected' : '' }}>User</option>
+                                <option value="3" {{ (old('role') == '3') ? 'selected' : '' }}>Reviewer</option>
+                                <option value="4" {{ (old('role') == '4') ? 'selected' : '' }}>Approver</option>
+                                <option value="2" {{ (old('role') == '2') ? 'selected' : '' }}>Admin</option>
+                            </x-select>
                         </div>
                         <input type="hidden" name="department" id="department" />
                         <input type="hidden" name="section" id="section" />
