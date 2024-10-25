@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Section;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DepartmentController extends Controller
 {
@@ -98,5 +99,13 @@ class DepartmentController extends Controller
     {
         $department->update(['del' => 'Y']);
         return to_route('department.index')->with('success', 'Department deleted successfully');
+    }
+
+    public function generatesection($id){
+        $section = Section::where('department_id', $id)->get();
+        return response()->json([
+            'status' => 200,
+            'section' => $section,
+        ]);
     }
 }

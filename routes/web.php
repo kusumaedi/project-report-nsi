@@ -43,6 +43,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'master'], function () {
         Route::resource('department', DepartmentController::class);
+        Route::post('department/generatesection/{id}', [DepartmentController::class, 'generatesection'])->name('department.generatesection');
         Route::resource('section', SectionController::class);
         // Route::resource('user', UserController::class);
     });

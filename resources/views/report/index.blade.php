@@ -62,15 +62,17 @@
                         <div class="mb-3">
                           <label class="form-label">Section</label>
                           <div class="input-icon">
-                            <span class="input-icon-addon d-none" id="hidden_load">
-                                <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
-                            </span>
-                            <select name="section_id" id="section_id" class="form-select">
+
+                            <select name="section_id" id="section_id" class="form-control">
                                 <option value="">-choose-</option>
                                 @foreach ($section as $sect)
                                 <option value="{{ $sect->id }}" {{ (request()->get('section_id') == $sect->id) ? 'selected' : '' }}>{{ $sect->name }}</option>
                                 @endforeach
                             </select>
+
+                            <span class="input-icon-addon d-none" id="hidden_load">
+                                <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+                            </span>
 
                           </div>
                         </div>
@@ -191,6 +193,28 @@
                 ]
             });
         });
+
+    $(document).on('change', '#department_id', function() {
+        var item = $(this).val();
+        $('#hidden_load').removeClass('d-none');
+        $.ajax({
+            url : '{{ route("department.generatesection", ":id") }}'.replace(':id', item),
+            data: {
+            "_token": "{{ csrf_token() }}",
+            },
+            type:'POST',
+            success:function(data){
+                $('#hidden_load').addClass('d-none');
+                $("#section_id").html('');
+                $("#section_id").append('<option value="">-choose size-</option>');
+                $.each(data.section, function(key, value) {
+                    $("#section_id").append('<option value="'+value.id+'">'+value.name+'</option>');
+                });
+
+            }
+        });
+    });
+
     </script>
 
 
