@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,12 @@ use App\Http\Controllers\ReportController;
 // });
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/myprofile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::post('/myprofile', [ProfileController::class, 'update'])->name('user.updateprofile');
+    Route::get('/myprofile/deleteavatar', [ProfileController::class, 'deleteavatar'])->name('user.deleteavatar');
+    Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('user.changepassword');
+    Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('user.updatepassword');
 
     Route::get('/', function () {
         return view('home');

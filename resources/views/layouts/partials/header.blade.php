@@ -9,7 +9,7 @@
                 {{-- IT Project Report for PT NSI --}}Report
             </a>
         </h1>
-        {{-- <div class="navbar-nav flex-row order-md-last">
+        <div class="navbar-nav flex-row order-md-last">
             <div class="d-none d-md-flex">
                 <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
                     <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
@@ -36,17 +36,11 @@
             @auth
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url({{ asset('storage/profile') }}/{{ auth()->user()->avatar ?? 'default.jpg' }})"></span>
+                    <span class="avatar avatar-sm" style="background-image: url({{ (auth()->user()->avatar == '') ? 'default.jpg' :  asset('storage/profile/').'/'.auth()->user()->avatar }})"></span>
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ ucwords(strtolower(auth()->user()->name ?? '')) }}</div>
                         <div class="mt-1 small text-muted" style="font-size: 7pt">
-                            @if (auth()->user()->isAdmin())
-                                Administrator
-                            @elseif (auth()->user()->isPIC())
-                                PIC - {{ auth()->user()->grup }}
-                            @else
-                                {{ auth()->user()->team ?? '' }}
-                            @endif
+                           {{ auth()->user()->role_name }}
 
                         </div>
                     </div>
@@ -60,7 +54,7 @@
                 </div>
             </div>
             @endauth
-        </div> --}}
+        </div>
     </div>
 </header>
 <header class="navbar-expand-md">
@@ -84,16 +78,18 @@
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item {{ request()->is('guide') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('guide') }}">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
+                    <li class="nav-item {{ request()->is('report*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('report') }}">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path><path d="M9 9l1 0"></path><path d="M9 13l6 0"></path><path d="M9 17l6 0"></path>
+                                </svg>
                             </span>
                             <span class="nav-link-title">
-                                Guide
+                                Report
                             </span>
                         </a>
-                    </li> --}}
+                    </li>
 
                     {{-- <li class="nav-item dropdown {{ request()->is('manage*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
