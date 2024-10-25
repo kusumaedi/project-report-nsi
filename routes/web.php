@@ -46,7 +46,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::resource('user', UserController::class);
     });
 
-    Route::get('report-admin', [ReportRoleController::class, 'admin'])->name('report.admin');
+    Route::get('admin-report', [ReportRoleController::class, 'admin'])->name('report.admin');
 
 });
 

@@ -101,6 +101,10 @@ class ReportController extends Controller
      */
     public function edit(Report $report)
     {
+        if($report->user_id != auth()->user()->id){
+            return abort('403');
+        }
+
         $user = User::select('id', 'name')->get();
         return view('report.edit', compact('report', 'user'));
     }
