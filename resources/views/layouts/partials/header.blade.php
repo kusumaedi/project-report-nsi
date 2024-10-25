@@ -102,7 +102,7 @@
                                 Master Data
                             </span>
                         </a>
-                        <div class="dropdown-menu {{ (request()->is('master*')) ? 'show' : '' }}">
+                        <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ url('master/user') }}" rel="noopener">
                                 User
                             </a>

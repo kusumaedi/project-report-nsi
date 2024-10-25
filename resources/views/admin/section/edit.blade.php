@@ -29,7 +29,7 @@
     <div class="page page-center">
     <div class="container py-4">
 
-        <x-form class="card card-md" action="{{ route('section.update', $place->id) }}" method="put">
+        <x-form class="card card-md" action="{{ route('section.update', $section->id) }}" method="put">
         <div class="card-header">
             <h3 class="card-title">Edit Section</h3>
           </div>
@@ -38,7 +38,7 @@
                 <div class="col-xl-6">
                     <div class="mb-3">
                         <x-label class="col-form-label required">Name</x-label>
-                        <x-input type="text" name="name" placeholder="Enter section name" value="{{ $place->name }}" />
+                        <x-input type="text" name="name" placeholder="Enter section name" value="{{ $section->name }}" />
                     </div>
                 </div>
                 <div class="col-xl-6">
@@ -47,7 +47,7 @@
                         <x-select name="department_id">
                             <option value="">-choose-</option>
                             @foreach ($department as $item)
-                             <option value="{{ $item->id }}" {{ ($place->department_id == $item->id) ? 'selected' : ''  }}>{{ $item->name }}</option>
+                             <option value="{{ $item->id }}" {{ ($section->department_id == $item->id) ? 'selected' : ''  }}>{{ $item->name }}</option>
                             @endforeach
                         </x-select>
                     </div>

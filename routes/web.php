@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +43,7 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'master'], function () {
         Route::resource('department', DepartmentController::class);
-        // Route::resource('section', SectionController::class);
+        Route::resource('section', SectionController::class);
         // Route::resource('user', UserController::class);
     });
 
