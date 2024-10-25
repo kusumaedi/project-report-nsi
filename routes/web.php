@@ -37,6 +37,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::group(['middleware' => 'admin'], function () {
+
+    Route::group(['prefix' => 'master'], function () {
+        Route::resource('department', DepartmentController::class);
+        // Route::resource('section', SectionController::class);
+        // Route::resource('user', UserController::class);
+    });
+
+
+});
+
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authuser');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
