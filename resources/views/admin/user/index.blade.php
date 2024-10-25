@@ -50,11 +50,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>ID</th>
+                        <th>Username</th>
                         <th>Name</th>
-                        <th>Team</th>
-                        <th>Phone</th>
-                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Section</th>
+                        <th>Role</th>
                         <th width="75px"></th>
                     </tr>
                 </thead>
@@ -62,11 +62,11 @@
                 @foreach ($user as $list)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $list->id_emp }}</td>
+                        <td>{{ $list->username }}</td>
                         <td>{{ $list->name }}</td>
-                        <td>{{ $list->team }}</td>
-                        <td>{{ $list->phone }}</td>
-                        <td>{{ $list->email }}</td>
+                        <td>{{ $list->department }}</td>
+                        <td>{{ $list->section }}</td>
+                        <td>{{ $list->role_name }}</td>
                         <td>
                             <div class="d-inline">
                                 <a href="{{ route('user.edit', $list->id) }}" class="btn btn-info btn-icon">

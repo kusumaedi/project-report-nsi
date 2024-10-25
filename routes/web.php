@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProfileController;
@@ -45,7 +46,7 @@ Route::group(['middleware' => 'admin'], function () {
         Route::resource('department', DepartmentController::class);
         Route::post('department/generatesection/{id}', [DepartmentController::class, 'generatesection'])->name('department.generatesection');
         Route::resource('section', SectionController::class);
-        // Route::resource('user', UserController::class);
+        Route::resource('user', UserController::class);
     });
 
 
