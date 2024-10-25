@@ -44,12 +44,50 @@
               </div>
           </div>
         <div class="card-body">
+            <form method="GET" class="mb-4">
+                <div class="row row-cards">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mb-3">
+                          <label class="form-label">Department</label>
+                          <select name="department_id" id="department_id" class="form-select">
+                            <option value="">-choose-</option>
+                            @foreach ($department as $dept)
+                            <option value="{{ $dept->id }}" {{ (request()->get('department_id') == $dept->id) ? 'selected' : '' }}>{{ $dept->name }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mb-3">
+                          <label class="form-label">Section</label>
+                          <div class="input-icon">
+                            <span class="input-icon-addon d-none" id="hidden_load">
+                                <div class="spinner-border spinner-border-sm text-secondary" role="status"></div>
+                            </span>
+                            <select name="section_id" id="section_id" class="form-select">
+                                <option value="">-choose-</option>
+                                @foreach ($section as $sect)
+                                <option value="{{ $sect->id }}" {{ (request()->get('section_id') == $sect->id) ? 'selected' : '' }}>{{ $sect->name }}</option>
+                                @endforeach
+                            </select>
+
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1">
+                        <div class="mb-3">
+                            <label class="form-label text-white d-none d-md-block">Filter</label>
+                            <button type="submit" class="btn btn-warning form-control">Filter</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
 
           <div id="table-default" class="table-responsive">
             @unless(count($report) == 0)
-
-            <form id="bulkForm" action="" method="post">
-            @csrf
             <table class="table table-bordered table-striped table-vcenter" id="MyTable">
                 <thead>
                     <tr>
@@ -106,7 +144,7 @@
                 @endforeach
                 </tbody>
             </table>
-            </form>
+
             @else
             <p>No report data found</p>
             @endunless
@@ -153,7 +191,7 @@
                 ]
             });
         });
-
-
     </script>
+
+
 @endsection

@@ -40,4 +40,13 @@ class Report extends Model
         }
         return $status;
     }
+
+    public function scopeFilter($query, array $filters){
+        if($filters['department_id'] ?? false) {
+            $query->where('department_id', request('department_id'));
+        }
+        if($filters['section_id'] ?? false) {
+            $query->where('section_id', request('section_id'));
+        }
+    }
 }

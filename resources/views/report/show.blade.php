@@ -164,6 +164,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if (count($chunk) == 1)
+                                    <div class="col-md-6 pl-2 pr-3" style="border-bottom: 1px solid #ccc; {{ (!$loop->last) ? 'border-right: 1px solid #ccc;' : '' }}">
+                                        <div class="row mb-0 my-1">
+                                            <div class="col-6"></div>
+                                            <div class="col-6"></div>
+                                        </div>
+                                    </div>
+                                    @endif
                                 @endforeach
                             </div>
                             @endforeach

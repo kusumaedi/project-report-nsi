@@ -7,6 +7,8 @@ use App\Models\Report;
 use Illuminate\Http\Request;
 use App\Models\ReportInstructor;
 use App\Http\Controllers\Controller;
+use App\Models\Department;
+use App\Models\Section;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller
@@ -18,8 +20,14 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $report = Report::with('user')->where('user_id', auth()->user()->id)->get();
-        return view('report.index', compact('report'));
+        $department = Department::where('del', 'N')->get();
+        if(request()->get('department_id') !=''){
+            $section = $section = Section::where('del', 'N')->where('department_id', request()->get('department_id'))->get();
+        } else {
+            $section = [];
+        }
+        $report = Report::with('user')->where('user_id', auth()->user()->id)->filter(request(['department_id','section_id']))->get();
+        return view('report.index', compact('report', 'department', 'section'));
     }
 
     /**
