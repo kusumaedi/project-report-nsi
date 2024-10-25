@@ -19,10 +19,6 @@ use App\Http\Controllers\DepartmentController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/myprofile', [ProfileController::class, 'index'])->name('user.profile');

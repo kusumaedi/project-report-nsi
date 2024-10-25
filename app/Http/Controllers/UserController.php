@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,6 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::get();
+
         return view('admin.user.index', compact('user'));
     }
 
@@ -26,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $department = Department::where('del', 'N')->get();
+        return view('admin.user.create', compact('department'));
     }
 
     /**
@@ -38,15 +41,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_emp' => 'required|unique:users',
-            'name' => 'required'
+            'username' => 'required|unique:users',
+            'name' => 'required',
+            'email' => 'required'
         ], [
-            'id_emp.unique' => 'This employee has been registered',
-            'id_emp.required' => 'ID employee is required',
+            'username.unique' => 'This username has been taken',
+            'username.required' => 'Username is required',
             'name.required' => 'Name is required',
         ]);
         $input = $request->all();
-        $input['password'] =  Hash::make($request->input('id_emp'));
+        $input['password'] =  Hash::make($request->input('username'));
 
         User::create($input);
 

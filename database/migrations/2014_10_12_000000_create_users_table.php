@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('department');
-            $table->string('section');
+            $table->string('department')->nullable();
+            $table->string('section')->nullable();
             $table->string('avatar')->nullable();
             $table->integer('role')->default('1');
             $table->rememberToken();
