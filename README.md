@@ -13,9 +13,7 @@ This project is take home based project for PT NIS Recruitment Process.
 
 ## Templates
 TABLER - Tabler is a free and open source web application UI kit based on Bootstrap 5, with hundreds responsive components and multiple layouts.
-```
 [https://github.com/stisla/stisla](https://github.com/tabler/tabler)
-```
 
 ## How to Install and Development the Application
 1. Open Terminal and Clone Project from Repository Github.
