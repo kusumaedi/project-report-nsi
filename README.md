@@ -28,7 +28,7 @@ TABLER - Tabler is a free and open source web application UI kit based on Bootst
         ```
 2. Go to the project after the clone process is complete.
     ```
-    cd wms-app
+    cd project-report-nsi
     ```
 3. Install all the dependencies using composer
     ```
