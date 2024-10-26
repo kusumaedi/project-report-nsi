@@ -1,5 +1,5 @@
 ## About the project
-This project is take home based project for PT NIS Recruitment Process.
+This project is take home based project for PT NIS Recruitment Process after written test at 22/10/2024 ant Interview at 23/10/2024
 
 ## Technologies
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
@@ -13,17 +13,18 @@ This project is take home based project for PT NIS Recruitment Process.
 
 ## Templates
 TABLER - Tabler is a free and open source web application UI kit based on Bootstrap 5, with hundreds responsive components and multiple layouts.
-[https://github.com/stisla/stisla](https://github.com/tabler/tabler)
+
+[https://github.com/tabler/tabler](https://github.com/tabler/tabler)
 
 ## How to Install and Development the Application
 1. Open Terminal and Clone Project from Repository Github.
     - Use HTTPS
         ```
-        git clone https://github.com/msafeiyahya96/wms-app.git
+        git clone https://github.com/kusumaedi/project-report-nsi.git
         ```
     - Use SSH *must generate SSH Key first
         ```
-        git clone git@github.com:msafeiyahya96/wms-app.git
+        git clone git@github.com:kusumaedi/project-report-nsi.git
         ```
 2. Go to the project after the clone process is complete.
     ```
