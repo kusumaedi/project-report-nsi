@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('report/{report}/print', [ReportController::class, 'print'])->name('report.print');
 
     Route::get('reviewer-report', [ReportRoleController::class, 'reviewer'])->name('report.reviewer');
+    Route::put('reviewer-report/{id}/{status}', [ReportRoleController::class, 'review_process'])->name('report.review_process');
 
 });
 

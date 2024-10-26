@@ -123,7 +123,7 @@
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
                             </a>
 
-                            <a href="#" class="text-danger action-cancel" data-id="{{ $list->id }}" title="Abort" data-bs-toggle="modal" data-bs-target="#rejectModal">
+                            <a href="#" class="text-danger action-reject" data-id="{{ $list->id }}" title="Abort" data-bs-toggle="modal" data-bs-target="#rejectModal">
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                             </a>
 
@@ -192,7 +192,7 @@
     <div class="modal-dialog modal-sm" role="document">
       <div class="modal-content">
 
-        <form action="" method="POST" id="formCancel">
+        <form action="" method="POST" id="formReject">
         @csrf
         @method('PUT')
 
@@ -282,6 +282,20 @@
             }
         });
     });
+
+    $(document).on('click', '.action-ok', function(e) {
+            e.preventDefault();
+            $('#okModal').modal('show');
+            var link = '{{ route("report.review_process", [":id", "Reviewed"]) }}'.replace(':id', $(this).data('id'));
+            $("#formConfirm").attr('action', link);
+        });
+
+        $(document).on('click', '.action-reject', function(e) {
+            e.preventDefault();
+            $('#rejectModal').modal('show');
+            var addr = '{{ route("report.review_process", [":id", "Rejected"]) }}'.replace(':id', $(this).data('id'));
+            $("#formReject").attr('action', addr);
+        });
 
     </script>
 

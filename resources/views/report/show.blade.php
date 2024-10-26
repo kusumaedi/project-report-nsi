@@ -168,6 +168,26 @@
 
             </table>
 
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        Prepared By <br><br> <strong><i>{{ $report->user->name }}</i></strong>
+                    </td>
+                    <td>
+                        Checked By <br><br> <strong><i>{{ $report->checker }}</i></strong>
+                    </td>
+                    <td>
+                        Reviewed By <br><br> ___
+                    </td>
+                    <td>
+                        Approved 1 By <br><br> ___
+                    </td>
+                    <td>
+                        Approved 2 By <br><br> ___
+                    </td>
+                </tr>
+            </table>
+
           </div>
 
         </div>

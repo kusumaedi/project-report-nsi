@@ -31,4 +31,16 @@ class ReportRoleController extends Controller
         $report = Report::with('user')->where('status', 'Submit')->filter(request(['department_id','section_id']))->get();
         return view('reviewer.index', compact('report', 'department', 'section'));
     }
+
+    public function review_process($id, $status)
+    {
+        $report = Report::findOrFail($id);
+        if((!auth()->user()->isReviewer()) or (!in_array($report->status, array("Submit")))){
+            abort(403);
+        }
+
+        $report->update(['status' => $status]);
+
+        return to_route('report.reviewer')->with('success','Selected report '.$status.' successfully');
+    }
 }
