@@ -206,7 +206,7 @@
             success:function(data){
                 $('#hidden_load').addClass('d-none');
                 $("#section_id").html('');
-                $("#section_id").append('<option value="">-choose size-</option>');
+                $("#section_id").append('<option value="">-choose-</option>');
                 $.each(data.section, function(key, value) {
                     $("#section_id").append('<option value="'+value.id+'">'+value.name+'</option>');
                 });

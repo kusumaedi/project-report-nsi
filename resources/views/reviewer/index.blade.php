@@ -33,7 +33,7 @@
       <!-- Card -->
       <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Manage Report</h3>
+            <h3 class="card-title">Manage Report To Review</h3>
           </div>
         <div class="card-body">
             <form method="GET" class="mb-4">
@@ -274,7 +274,7 @@
             success:function(data){
                 $('#hidden_load').addClass('d-none');
                 $("#section_id").html('');
-                $("#section_id").append('<option value="">-choose size-</option>');
+                $("#section_id").append('<option value="">-choose-</option>');
                 $.each(data.section, function(key, value) {
                     $("#section_id").append('<option value="'+value.id+'">'+value.name+'</option>');
                 });

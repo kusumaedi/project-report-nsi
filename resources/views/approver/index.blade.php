@@ -13,7 +13,7 @@
         <div class="col-auto ms-auto d-print-none">
           <div class="d-flex">
             <ol class="breadcrumb breadcrumb-arrows" aria-label="breadcrumbs">
-              <li class="breadcrumb-item"><a href="{{ route('report.admin') }}">Request</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('report.reviewer') }}">Request</a></li>
               <li class="breadcrumb-item active" aria-current="page"><a href="#">List</a></li>
             </ol>
           </div>
@@ -33,7 +33,7 @@
       <!-- Card -->
       <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Manage Report</h3>
+            <h3 class="card-title">Manage Report Need Approval</h3>
           </div>
         <div class="card-body">
             <form method="GET" class="mb-4">
@@ -67,19 +67,6 @@
                             </span>
 
                           </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mb-3">
-                          <label class="form-label">Status</label>
-                          <select name="status" id="status" class="form-select">
-                            <option value="">-choose-</option>
-                            <option value="Submit" {{ (request()->get('status') == 'Submit') ? 'selected' : '' }}>Submit</option>
-                            <option value="Reviewed" {{ (request()->get('status') == 'Reviewed') ? 'selected' : '' }}>Reviewed</option>
-                            <option value="Approved" {{ (request()->get('status') == 'Approved') ? 'selected' : '' }}>Approved</option>
-                            <option value="Rejected" {{ (request()->get('status') == 'Rejected') ? 'selected' : '' }}>Rejected</option>
-                          </select>
                         </div>
                     </div>
 
@@ -124,19 +111,22 @@
                         </td>
                         <td class="text-center">
 
-                            <div class="d-inline">
-                                <a href="{{ route('report.show', $list->id) }}" class="btn btn-secondary btn-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notes" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"></path><path d="M9 7l6 0"></path><path d="M9 11l6 0"></path><path d="M9 15l4 0"></path>
-                                        </svg>
-                                </a>
-                            </div>
 
-                            <div class="d-inline">
-                                <a href="{{ route('report.print', $list->id) }}" class="btn btn-success btn-icon">
-                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-printer"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" /><path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" /><path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" /></svg>
-                                </a>
-                            </div>
+                            <a href="{{ route('report.show', $list->id) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notes" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M5 3m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"></path><path d="M9 7l6 0"></path><path d="M9 11l6 0"></path><path d="M9 15l4 0"></path>
+                                    </svg>
+                            </a>
+
+
+                            <a href="#" class="text-success action-ok" data-id="{{ $list->id }}" title="Ok" data-bs-toggle="modal" data-bs-target="#okModal">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
+                            </a>
+
+                            <a href="#" class="text-danger action-reject" data-id="{{ $list->id }}" title="Abort" data-bs-toggle="modal" data-bs-target="#rejectModal">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                            </a>
+
 
                         </td>
                     </tr>
@@ -157,6 +147,87 @@
     <!-- Container Page -->
   </div>
   <!-- Page body -->
+
+
+<!-- Modal OK -->
+<div class="modal" id="okModal" tabindex="-1">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+
+        <form action="" method="POST" id="formConfirm">
+        @csrf
+        @method('PUT')
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-status bg-success"></div>
+        <div class="modal-body text-center py-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-green icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9 12l2 2l4 -4" />
+          </svg>
+          <h3>Approval Confirmation</h3>
+          <div class="text-secondary">You have read all the report information, and AGREE to Approve The Report.</div>
+        </div>
+        <div class="modal-footer">
+          <div class="w-100">
+            <div class="row">
+              <div class="col">
+                <button type="submit" class="btn btn-success w-100" id="confirm-btn">
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Cancel -->
+  <div class="modal" id="rejectModal" tabindex="-1">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+
+        <form action="" method="POST" id="formReject">
+        @csrf
+        @method('PUT')
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-status bg-danger"></div>
+        <div class="modal-body text-center py-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 9v2m0 4v.01" />
+            <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+          </svg>
+          <h3>Are you sure?</h3>
+          <div class="text-secondary">Do you really want to reject the report? What you've done cannot be undone.</div>
+        </div>
+        <div class="modal-footer">
+          <div class="w-100">
+            <div class="row">
+              <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
+                  Close
+                </a></div>
+              <div class="col">
+                <button type="submit" class="btn btn-danger w-100" id="cancel-btn">
+                    Reject report
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
 
 @endsection
 
@@ -211,6 +282,20 @@
             }
         });
     });
+
+    $(document).on('click', '.action-ok', function(e) {
+            e.preventDefault();
+            $('#okModal').modal('show');
+            var link = '{{ route("report.approval_process", [":id", "Approved"]) }}'.replace(':id', $(this).data('id'));
+            $("#formConfirm").attr('action', link);
+        });
+
+        $(document).on('click', '.action-reject', function(e) {
+            e.preventDefault();
+            $('#rejectModal').modal('show');
+            var addr = '{{ route("report.approval_process", [":id", "Rejected"]) }}'.replace(':id', $(this).data('id'));
+            $("#formReject").attr('action', addr);
+        });
 
     </script>
 

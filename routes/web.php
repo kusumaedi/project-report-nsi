@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('reviewer-report', [ReportRoleController::class, 'reviewer'])->name('report.reviewer');
     Route::put('reviewer-report/{id}/{status}', [ReportRoleController::class, 'review_process'])->name('report.review_process');
 
+    Route::get('approver-report', [ReportRoleController::class, 'approver'])->name('report.approver');
+    Route::put('approver-report/{id}/{status}', [ReportRoleController::class, 'approval_process'])->name('report.approval_process');
+
 });
 
 Route::group(['middleware' => 'admin'], function () {
