@@ -1,5 +1,21 @@
 ## About the project
-This project is take home based project for PT NIS Recruitment Process after written test at 22/10/2024 ant Interview at 23/10/2024
+This project is take home based project for PT NIS Recruitment Process after written test at 22/10/2024 and Interview at 23/10/2024.
+<b>Feature</b>
+<ul>
+    <li>Report Module</li>
+    <li>Approval</li>
+    <li>Master Data (User, Department, Section)</li>
+    <li>Summary Dashboard Report</li>
+    <li>Print Report</li>
+</ul>
+
+<b>User Role</b>
+<ul>
+    <li>User</li>
+    <li>Reviewer</li>
+    <li>Approver</li>
+    <li>Admin</li>
+</ul>
 
 ## Technologies
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
