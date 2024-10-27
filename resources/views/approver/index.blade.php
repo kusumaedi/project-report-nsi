@@ -29,6 +29,7 @@
 
       {{-- alert component   --}}
       <x-alert type='success' />
+      <x-alert type='warning' />
 
       <!-- Card -->
       <div class="card">

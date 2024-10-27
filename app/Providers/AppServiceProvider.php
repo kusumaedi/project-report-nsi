@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('layouts.partials.header', function ($view) {
             $view->with('reviewer_notif', Report::where('status', 'Submit')->count())
-                ->with('approver_notif', Report::where('status', 'Reviewed')->count());
+                ->with('approver_notif', Report::whereIn('status', ['Reviewed', 'Approved'])->count());
         });
     }
 }

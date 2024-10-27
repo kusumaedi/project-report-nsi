@@ -37,7 +37,9 @@ class Report extends Model
             $status = '<span class="badge badge-outline text-green">Approved</span>';
         } elseif ( $this->status == 'Rejected') {
             $status = '<span class="badge bg-danger text-white">Rejected</span>';
-        }else {
+        }elseif ( $this->status == 'Completed') {
+            $status = '<span class="badge bg-primary text-white">Completed</span>';
+        } else {
            $status = '<span class="status-dot status-orange">'.$this->status.'</span>';
         }
         return $status;
@@ -53,5 +55,15 @@ class Report extends Model
         if($filters['status'] ?? false) {
             $query->where('status', request('status'));
         }
+    }
+
+    public function user_approver1()
+    {
+        return $this->belongsTo(User::class, 'approver1', 'id');
+    }
+
+    public function user_approver2()
+    {
+        return $this->belongsTo(User::class, 'approver2', 'id');
     }
 }

@@ -60,18 +60,40 @@ class ReportRoleController extends Controller
         } else {
             $section = [];
         }
-        $report = Report::with('user')->where('status', 'Reviewed')->filter(request(['department_id','section_id']))->get();
+        $report = Report::with('user')->whereIn('status', ['Reviewed', 'Approved'])->filter(request(['department_id','section_id']))->get();
         return view('approver.index', compact('report', 'department', 'section'));
     }
 
     public function approval_process($id, $status)
     {
         $report = Report::findOrFail($id);
-        if((!auth()->user()->isApprover()) or (!in_array($report->status, array("Reviewed")))){
+        if((!auth()->user()->isApprover()) or (!in_array($report->status, array("Reviewed", "Approved")))){
             abort(403);
         }
 
-        $report->update(['status' => $status]);
+        //check reject or not
+        if($status == 'Rejected'){
+            $report->update(['status' => 'Rejected', 'approver1' => '', 'approver2' => '']);
+        } else {
+
+             //check status approval before
+
+             //avoid double approver with same person
+            if(($report->approver1 == auth()->user()->id) or (($report->approver2 == auth()->user()->id))){
+                return to_route('report.approver')->with('warning','Selected report has your approval before');
+            }
+
+            if ($report->approver1 == ''){
+                $report->update(['status' => 'Approved',  'approver1' => auth()->user()->id]);
+
+            } else {
+                $report->update(['status' => 'Completed',  'approver2' => auth()->user()->id]);
+            }
+        }
+
+
+
+        // $report->update(['status' => $status]);
 
         return to_route('report.approver')->with('success','Selected report '.$status.' successfully');
     }

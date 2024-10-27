@@ -214,10 +214,10 @@
                     Reviewed By <br><br> <strong><i>{{ $report->reviewer ?? '-' }}</i></strong>
                 </td>
                 <td>
-                    Approved 1 By <br><br> ___
+                    Approved 1 By <br><br> <strong><i>{{ $report->user_approver1->name ?? '-' }}</i></strong>
                 </td>
                 <td>
-                    Approved 2 By <br><br> ___
+                    Approved 2 By <br><br> <strong><i>{{ $report->user_approver2->name ?? '-' }}</i></strong>
                 </td>
             </tr>
         </table>
