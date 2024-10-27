@@ -45,7 +45,7 @@ class ReportRoleController extends Controller
             abort(403);
         }
 
-        $report->update(['status' => $status]);
+        $report->update(['status' => $status, 'reviewer' => auth()->user()->name]);
 
         return to_route('report.reviewer')->with('success','Selected report '.$status.' successfully');
     }

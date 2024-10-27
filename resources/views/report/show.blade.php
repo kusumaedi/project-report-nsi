@@ -177,7 +177,7 @@
                         Checked By <br><br> <strong><i>{{ $report->checker }}</i></strong>
                     </td>
                     <td>
-                        Reviewed By <br><br> ___
+                        Reviewed By <br><br> <strong><i>{{ $report->reviewer ?? '-' }}</i></strong>
                     </td>
                     <td>
                         Approved 1 By <br><br> ___

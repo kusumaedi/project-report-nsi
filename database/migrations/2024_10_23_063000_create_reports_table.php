@@ -27,6 +27,9 @@ return new class extends Migration
             $table->longtext('keyword');
             $table->json('attendant');
             $table->string('checker');
+            $table->string('reviewer')->nullable();
+            $table->integer('approver1')->nullable();
+            $table->integer('approver2')->nullable();
             $table->string('status');
             $table->timestamps();
         });
