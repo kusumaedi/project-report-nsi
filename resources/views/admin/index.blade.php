@@ -79,6 +79,7 @@
                             <option value="Reviewed" {{ (request()->get('status') == 'Reviewed') ? 'selected' : '' }}>Reviewed</option>
                             <option value="Approved" {{ (request()->get('status') == 'Approved') ? 'selected' : '' }}>Approved</option>
                             <option value="Rejected" {{ (request()->get('status') == 'Rejected') ? 'selected' : '' }}>Rejected</option>
+                            <option value="Completed" {{ (request()->get('status') == 'Completed') ? 'selected' : '' }}>Completed</option>
                           </select>
                         </div>
                     </div>
