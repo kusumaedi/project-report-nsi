@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ReportRoleController;
 
@@ -28,9 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('user.changepassword');
     Route::post('/change-password', [ProfileController::class, 'updatePassword'])->name('user.updatepassword');
 
-    Route::get('/', function () {
-        return view('home');
-    });
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
 
     Route::resource('report', ReportController::class);
     Route::get('report/{report}/print', [ReportController::class, 'print'])->name('report.print');
