@@ -40,13 +40,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('approver-report', [ReportRoleController::class, 'approver'])->name('report.approver');
     Route::put('approver-report/{id}/{status}', [ReportRoleController::class, 'approval_process'])->name('report.approval_process');
 
+    Route::post('master/department/generatesection/{id}', [DepartmentController::class, 'generatesection'])->name('department.generatesection');
+
 });
 
 Route::group(['middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'master'], function () {
         Route::resource('department', DepartmentController::class);
-        Route::post('department/generatesection/{id}', [DepartmentController::class, 'generatesection'])->name('department.generatesection');
         Route::resource('section', SectionController::class);
         Route::resource('user', UserController::class);
     });
