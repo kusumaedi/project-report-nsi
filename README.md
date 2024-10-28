@@ -12,10 +12,10 @@ This project is take home based project for PT NIS Recruitment Process after wri
 
 <b>User Role</b>
 <ul>
-    <li>User</li>
-    <li>Reviewer</li>
-    <li>Approver</li>
-    <li>Admin</li>
+    <li>User. Sample username / password: user / user</li>
+    <li>Reviewer. Sample username / password: reviewer / reviewer</li>
+    <li>Approver. Sample username / password: approver1 / approver1</li>
+    <li>Admin. Default username / password: admin / admin</li>
 </ul>
 
 ## Technologies
@@ -75,4 +75,8 @@ TABLER - Tabler is a free and open source web application UI kit based on Bootst
 6. Migrate the database
     ```
     php artisan migrate
+    ```
+7. Inject master data sample, default admin account user, into database
+    ```
+    php artisan db:seed
     ```
