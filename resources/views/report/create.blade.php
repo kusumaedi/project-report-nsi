@@ -63,7 +63,7 @@
                 <div class="col-xl-4">
                     <div class="mb-3">
                         <x-label class="col-form-label">Department</x-label>
-                        <input type="text" disabled  value="{{ auth()->user()->department }} class="form-control""/>
+                        <input type="text" disabled  value="{{ auth()->user()->department }}" class="form-control"/>
                     </div>
                 </div>
                 <div class="col-xl-4">
