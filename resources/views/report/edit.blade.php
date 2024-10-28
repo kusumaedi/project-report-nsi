@@ -144,7 +144,7 @@
                             <option value="{{ $potential_dangerous_point }}" {{ (in_array($potential_dangerous_point, $report->most_danger_point)) ? "selected" : "" }}>{{ $potential_dangerous_point }}</option>
                             @endforeach
                         </x-select>
-                        <small class="form-hint">Select one or many, from above aptions</small>
+                        <small class="form-hint">Select one or many, from above aptions. (Options automaticly generated from Potential Dangerous Point)</small>
                     </div>
                 </div>
             </div>

@@ -141,7 +141,7 @@
                         <x-label class="col-form-label required">The Most Danger Point</x-label>
                         <x-select name="most_danger_point[]" id="most_danger_point" multiple="multiple">
                         </x-select>
-                        <small class="form-hint">Select one or many, from above aptions</small>
+                        <small class="form-hint">Select one or many, from above aptions. (Options automaticly generated from Potential Dangerous Point)</small>
                     </div>
                 </div>
             </div>
